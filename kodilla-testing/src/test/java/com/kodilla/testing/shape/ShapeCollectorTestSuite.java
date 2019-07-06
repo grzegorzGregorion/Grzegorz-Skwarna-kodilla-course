@@ -1,11 +1,12 @@
 package com.kodilla.testing.forum.tdd;
 
-import com.kodilla.testing.forum.ForumComment;
-import com.kodilla.testing.forum.ForumPost;
-import com.kodilla.testing.forum.ForumUser;
+import com.kodilla.testing.shape.Circle;
+import com.kodilla.testing.shape.ShapeCollector;
 import org.junit.*;
 
-public class ForumTestSuit {
+import java.awt.*;
+
+public class ShapeCollectorTestSuite {
     private static int testCounter = 0;
 
     @BeforeClass
@@ -25,16 +26,16 @@ public class ForumTestSuit {
     }
 
     @Test
-    public void testAddPost() {
+    public void addFigure() {
         //Given
-        ForumUser forumUser = new ForumUser("mrsmith", "John Smith");
+        Circle circle = new Circle("circle", 4);
+        ShapeCollector shapeCollector = new ShapeCollector();
 
         //When
-        forumUser.addPost("mrsmith",
-                "Hello everyone, this is my first contribution here!");
+        shapeCollector.addFigure(circle);
 
         //Then
-        Assert.assertEquals(1, forumUser.getPostsQuantity());
+        Assert.assertEquals(1, shapeCollector.());
     }
 
     @Test
