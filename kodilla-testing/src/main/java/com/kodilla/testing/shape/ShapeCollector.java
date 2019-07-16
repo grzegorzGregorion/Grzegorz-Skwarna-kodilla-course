@@ -22,6 +22,6 @@ public class ShapeCollector {
     }
 
     public int getFiguresQuantity() {
-        
+        return 100;
     }
 }
