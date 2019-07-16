@@ -1,18 +1,23 @@
 package com.kodilla.testing.shape;
 
 public class Rectangle implements Shape {
-    String shapeName;
-    int fieldParam;
+    private String shapeName;
+    private int width;
+    private int height;
 
-    public Rectangle(String shapeName, int fieldParam) {
+    public Rectangle(String shapeName, int width, int height) {
         this.shapeName = shapeName;
-        this.fieldParam = fieldParam;
+        this.width = width;
+        this.height = height;
     }
 
-    public String getShapeName(){
+    @Override
+    public String getShapeName() {
         return "I'm " + shapeName;
     }
-    public double getField(){
-        return fieldParam;
+
+    @Override
+    public double getArea() {
+        return width * height;
     }
 }
