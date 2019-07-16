@@ -17,7 +17,7 @@ public class ShapeCollectorTestSuite {
 
     @Before
     public void beforeEveryTest(){
-        System.out.println("This is just the beginning of all tests.");
+        System.out.println("This is the beginning of the next test.");
     }
     //test 1
     @Test
@@ -45,6 +45,18 @@ public class ShapeCollectorTestSuite {
     }
     //test 3
     @Test
+    public void testRemoveNotExistingFigure(){
+        //Given
+        ShapeCollector shapeCollector = new ShapeCollector();
+        Shape circleShape = new Circle("circleName", 3);
+        //When
+        boolean result = shapeCollector.removeFigure(circleShape);
+        //Then
+        Assert.assertFalse(result);
+        Assert.assertEquals(0, shapeCollector.getFiguresQuantity());
+    }
+    //test 4
+    @Test
     public void testGetFigure(){
         //Given
         ShapeCollector shapeCollector = new ShapeCollector();
@@ -55,7 +67,7 @@ public class ShapeCollectorTestSuite {
         //Then
         Assert.assertEquals(circleShape, retrievedShape);
     }
-    //test 4
+    //test 5
     @Test
     public void testShowFigure(){
         //Given
@@ -63,20 +75,8 @@ public class ShapeCollectorTestSuite {
         Shape circleShape = new Circle("new", 3);
         shapeCollector.addFigure(circleShape);
         //When
-        Shape newShape = shapeCollector.showFigures();
+        String newShape = shapeCollector.showFigures();
         //Then
-        Assert.assertEquals(newShape, circleShape);
-    }
-    //test 5
-    @Test
-    public void testRemoveNotExistingFigure(){
-        //Given
-        ShapeCollector shapeCollector = new ShapeCollector();
-        Shape circleShape = new Circle("circleName", 3);
-        //When
-        boolean result = shapeCollector.removeFigure(circleShape);
-        //Then
-        Assert.assertFalse(result);
-        Assert.assertEquals(0, shapeCollector.getFiguresQuantity());
+        Assert.assertEquals(newShape, circleShape.getShapeName() + " " + circleShape.getField());
     }
 }
