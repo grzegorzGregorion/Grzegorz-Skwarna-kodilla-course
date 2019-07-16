@@ -23,15 +23,17 @@ public class ForumPost {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+
         ForumPost forumPost = (ForumPost) o;
+
         if (!postBody.equals(forumPost.postBody)) return false;
-        return Objects.equals(author, forumPost.author);
+        return author.equals(forumPost.author);
     }
 
     @Override
     public int hashCode() {
         int result = postBody.hashCode();
-        result = 31*result + author.hashCode();
+        result = 31 * result + author.hashCode();
         return result;
     }
 }

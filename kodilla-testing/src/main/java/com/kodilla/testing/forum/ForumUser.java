@@ -66,11 +66,11 @@ public class ForumUser {
         return result;
     }
 
-    public String getName() {
+    public String getName(){
         return name;
     }
 
-    public String getRealName() {
+    public String getRealName(){
         return realName;
     }
 }
