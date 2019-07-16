@@ -28,7 +28,7 @@ public class ShapeCollectorTestSuite {
         //When
         shapeCollector.addFigure(circleShape);
         //Then
-        Assert.assertEquals(1, shapeCollector.getFigure(0));
+        Assert.assertEquals(1, shapeCollector.getFiguresQuantity());
     }
     //test 2
     @Test
@@ -41,7 +41,7 @@ public class ShapeCollectorTestSuite {
         boolean result = shapeCollector.removeFigure(circleShape);
         //Then
         Assert.assertFalse(result);
-        Assert.assertEquals(0, shapeCollector.getFigure(0));
+        Assert.assertEquals(0, shapeCollector.getFiguresQuantity());
     }
     //test 3
     @Test

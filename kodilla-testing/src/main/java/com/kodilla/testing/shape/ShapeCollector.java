@@ -20,4 +20,8 @@ public class ShapeCollector {
     public Shape showFigures(){
         return null;
     }
+
+    public int getFiguresQuantity() {
+        
+    }
 }
