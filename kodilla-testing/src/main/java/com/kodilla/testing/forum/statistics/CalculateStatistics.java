@@ -4,21 +4,26 @@ import java.util.*;
 
 public class CalculateStatistics {
     Statistics statistics;
+    private double usersQuantity;
+    private double forumPostsQuantity;
+    private double forumCommentsQuantity;
+    private double avgPostsPerUser;
+    private double avgCommentsPerUser;
+    private double avgCommentsPerPost;
 
     public CalculateStatistics (Statistics statistics) {
         this.statistics = statistics;
     }
 
     public void forumStatistics() {
-
         Map<String, Double> forumStatistics = new HashMap<String, Double>();
 
-        double usersQuantity = statistics.usersNames().size();
-        double forumPostsQuantity = statistics.postsCount();
-        double forumCommentsQuantity = statistics.commentsCount();
-        double avgPostsPerUser = forumPostsQuantity / usersQuantity;
-        double avgCommentsPerUser = forumCommentsQuantity / usersQuantity;
-        double avgCommentsPerPost = forumCommentsQuantity / forumPostsQuantity;
+        usersQuantity = statistics.usersNames().size();
+        forumPostsQuantity = statistics.postsCount();
+        forumCommentsQuantity = statistics.commentsCount();
+        avgPostsPerUser = forumPostsQuantity / usersQuantity;
+        avgCommentsPerUser = forumCommentsQuantity / usersQuantity;
+        avgCommentsPerPost = forumCommentsQuantity / forumPostsQuantity;
 
         forumStatistics.put("Users quantity: ", usersQuantity);
         forumStatistics.put("Forum posts quantity: ", forumPostsQuantity);
@@ -30,5 +35,33 @@ public class CalculateStatistics {
         for (Map.Entry<String, Double> stat: forumStatistics.entrySet()) {
             System.out.println(stat.getKey() + stat.getValue());
         }
+    }
+
+    public Statistics getStatistics() {
+        return statistics;
+    }
+
+    public double getUsersQuantity() {
+        return usersQuantity;
+    }
+
+    public double getForumPostsQuantity() {
+        return forumPostsQuantity;
+    }
+
+    public double getForumCommentsQuantity() {
+        return forumCommentsQuantity;
+    }
+
+    public double getAvgPostsPerUser() {
+        return avgPostsPerUser;
+    }
+
+    public double getAvgCommentsPerUser() {
+        return avgCommentsPerUser;
+    }
+
+    public double getAvgCommentsPerPost() {
+        return avgCommentsPerPost;
     }
 }

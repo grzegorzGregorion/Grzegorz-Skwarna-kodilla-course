@@ -1,15 +1,13 @@
 package com.kodilla.testing.forum.statistics;
 
 import com.kodilla.testing.forum.ForumPost;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import static jdk.nashorn.internal.objects.Global.Infinity;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -44,12 +42,19 @@ public class ForumStatisticsTestSuite {
         listMock.add("Cf");
         listMock.add("Gh");
         listMock.add("Bg");
-        //When
+
         when(statisticsMock.usersNames()).thenReturn(listMock);
         when(statisticsMock.postsCount()).thenReturn(15);
         when(statisticsMock.commentsCount()).thenReturn(45);
-        //Then
+        //When
         calculateStatistics.forumStatistics();
+        //Then
+        Assert.assertEquals(5, calculateStatistics.getUsersQuantity(),3);
+        Assert.assertEquals(15, calculateStatistics.getForumPostsQuantity(),3);
+        Assert.assertEquals(45, calculateStatistics.getForumCommentsQuantity(),3);
+        Assert.assertEquals(3, calculateStatistics.getAvgPostsPerUser(),3);
+        Assert.assertEquals(9, calculateStatistics.getAvgCommentsPerUser(),3);
+        Assert.assertEquals(3, calculateStatistics.getAvgCommentsPerPost(),3);
     }
 
     //test 2
@@ -65,12 +70,19 @@ public class ForumStatisticsTestSuite {
         listMock.add("Cf");
         listMock.add("Gh");
         listMock.add("Bg");
-        //When
+
         when(statisticsMock.usersNames()).thenReturn(listMock);
         when(statisticsMock.postsCount()).thenReturn(0);
         when(statisticsMock.commentsCount()).thenReturn(45);
-        //Then
+        //When
         calculateStatistics.forumStatistics();
+        //Then
+        Assert.assertEquals(5, calculateStatistics.getUsersQuantity(),3);
+        Assert.assertEquals(0, calculateStatistics.getForumPostsQuantity(),3);
+        Assert.assertEquals(45, calculateStatistics.getForumCommentsQuantity(),3);
+        Assert.assertEquals(0, calculateStatistics.getAvgPostsPerUser(),3);
+        Assert.assertEquals(9, calculateStatistics.getAvgCommentsPerUser(),3);
+        Assert.assertEquals(Infinity, calculateStatistics.getAvgCommentsPerPost(),3);
     }
 
     //test 3
@@ -86,12 +98,19 @@ public class ForumStatisticsTestSuite {
         listMock.add("Cf");
         listMock.add("Gh");
         listMock.add("Bg");
-        //When
+
         when(statisticsMock.usersNames()).thenReturn(listMock);
         when(statisticsMock.postsCount()).thenReturn(1000);
         when(statisticsMock.commentsCount()).thenReturn(45);
-        //Then
+        //When
         calculateStatistics.forumStatistics();
+        //Then
+        Assert.assertEquals(5, calculateStatistics.getUsersQuantity(),3);
+        Assert.assertEquals(1000, calculateStatistics.getForumPostsQuantity(),3);
+        Assert.assertEquals(45, calculateStatistics.getForumCommentsQuantity(),3);
+        Assert.assertEquals(200, calculateStatistics.getAvgPostsPerUser(),3);
+        Assert.assertEquals(9, calculateStatistics.getAvgCommentsPerUser(),3);
+        Assert.assertEquals(45/1000, calculateStatistics.getAvgCommentsPerPost(),3);
     }
 
     //test 4
@@ -107,12 +126,19 @@ public class ForumStatisticsTestSuite {
         listMock.add("Cf");
         listMock.add("Gh");
         listMock.add("Bg");
-        //When
+
         when(statisticsMock.usersNames()).thenReturn(listMock);
         when(statisticsMock.postsCount()).thenReturn(15);
         when(statisticsMock.commentsCount()).thenReturn(0);
-        //Then
+        //When
         calculateStatistics.forumStatistics();
+        //Then
+        Assert.assertEquals(5, calculateStatistics.getUsersQuantity(), 2);
+        Assert.assertEquals(15, calculateStatistics.getForumPostsQuantity(), 2);
+        Assert.assertEquals(0, calculateStatistics.getForumCommentsQuantity(), 2);
+        Assert.assertEquals(3, calculateStatistics.getAvgPostsPerUser(), 2);
+        Assert.assertEquals(0, calculateStatistics.getAvgCommentsPerUser(), 2);
+        Assert.assertEquals(0, calculateStatistics.getAvgCommentsPerPost(), 2);
     }
 
     //test 5
@@ -128,12 +154,19 @@ public class ForumStatisticsTestSuite {
         listMock.add("Cf");
         listMock.add("Gh");
         listMock.add("Bg");
-        //When
+
         when(statisticsMock.usersNames()).thenReturn(listMock);
         when(statisticsMock.postsCount()).thenReturn(15);
         when(statisticsMock.commentsCount()).thenReturn(5);
-        //Then
+        //When
         calculateStatistics.forumStatistics();
+        //Then
+        Assert.assertEquals(5, calculateStatistics.getUsersQuantity(),3);
+        Assert.assertEquals(15, calculateStatistics.getForumPostsQuantity(),3);
+        Assert.assertEquals(5, calculateStatistics.getForumCommentsQuantity(),3);
+        Assert.assertEquals(3, calculateStatistics.getAvgPostsPerUser(),3);
+        Assert.assertEquals(1, calculateStatistics.getAvgCommentsPerUser(),3);
+        Assert.assertEquals(5/15, calculateStatistics.getAvgCommentsPerPost(),3);
     }
 
     //test 6
@@ -149,12 +182,19 @@ public class ForumStatisticsTestSuite {
         listMock.add("Cf");
         listMock.add("Gh");
         listMock.add("Bg");
-        //When
+
         when(statisticsMock.usersNames()).thenReturn(listMock);
         when(statisticsMock.postsCount()).thenReturn(15);
         when(statisticsMock.commentsCount()).thenReturn(60);
-        //Then
+        //When
         calculateStatistics.forumStatistics();
+        //Then
+        Assert.assertEquals(5, calculateStatistics.getUsersQuantity(),3);
+        Assert.assertEquals(15, calculateStatistics.getForumPostsQuantity(),3);
+        Assert.assertEquals(60, calculateStatistics.getForumCommentsQuantity(),3);
+        Assert.assertEquals(3, calculateStatistics.getAvgPostsPerUser(),3);
+        Assert.assertEquals(12, calculateStatistics.getAvgCommentsPerUser(),3);
+        Assert.assertEquals(4, calculateStatistics.getAvgCommentsPerPost(),3);
     }
 
     //test 7
@@ -165,23 +205,30 @@ public class ForumStatisticsTestSuite {
         CalculateStatistics calculateStatistics = new CalculateStatistics(statisticsMock);
 
         List<String> listMock = new ArrayList<>();
-        //When
+
         when(statisticsMock.usersNames()).thenReturn(listMock);
         when(statisticsMock.postsCount()).thenReturn(15);
-        when(statisticsMock.commentsCount()).thenReturn(0);
-        //Then
+        when(statisticsMock.commentsCount()).thenReturn(15);
+        //When
         calculateStatistics.forumStatistics();
+        //Then
+        Assert.assertEquals(0, calculateStatistics.getUsersQuantity(),3);
+        Assert.assertEquals(15, calculateStatistics.getForumPostsQuantity(),3);
+        Assert.assertEquals(15, calculateStatistics.getForumCommentsQuantity(),3);
+        Assert.assertEquals(Infinity, calculateStatistics.getAvgPostsPerUser(),3);
+        Assert.assertEquals(Infinity, calculateStatistics.getAvgCommentsPerUser(),3);
+        Assert.assertEquals(1, calculateStatistics.getAvgCommentsPerPost(),3);
     }
 
     //test 8
     @Test
-    public void testUsersQnt100() {
+    public void testUsersQnt1000() {
         //Given
         Statistics statisticsMock = mock(Statistics.class);
         CalculateStatistics calculateStatistics = new CalculateStatistics(statisticsMock);
 
         List<String> listMock = new ArrayList<>();
-        for (int n = 0; n < 100; n++) {
+        for (int n = 0; n < 1000; n++) {
             Random rdmIntNumber = new Random();
             String randomUserName = null;
             int stringLength = rdmIntNumber.nextInt(4);
@@ -190,11 +237,18 @@ public class ForumStatisticsTestSuite {
             }
             listMock.add(randomUserName);
         }
-        //When
+
         when(statisticsMock.usersNames()).thenReturn(listMock);
         when(statisticsMock.postsCount()).thenReturn(15);
         when(statisticsMock.commentsCount()).thenReturn(68);
-        //Then
+        //When
         calculateStatistics.forumStatistics();
+        //Then
+        Assert.assertEquals(1000, calculateStatistics.getUsersQuantity(),3);
+        Assert.assertEquals(15, calculateStatistics.getForumPostsQuantity(),3);
+        Assert.assertEquals(68, calculateStatistics.getForumCommentsQuantity(),3);
+        Assert.assertEquals(15/1000, calculateStatistics.getAvgPostsPerUser(),3);
+        Assert.assertEquals(68/1000, calculateStatistics.getAvgCommentsPerUser(),3);
+        Assert.assertEquals(68/15, calculateStatistics.getAvgCommentsPerPost(),3);
     }
 }
