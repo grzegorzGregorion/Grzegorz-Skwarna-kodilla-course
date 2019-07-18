@@ -82,7 +82,7 @@ public class ForumStatisticsTestSuite {
         Assert.assertEquals(45, calculateStatistics.getForumCommentsQuantity(),3);
         Assert.assertEquals(0, calculateStatistics.getAvgPostsPerUser(),3);
         Assert.assertEquals(9, calculateStatistics.getAvgCommentsPerUser(),3);
-        Assert.assertEquals(Infinity, calculateStatistics.getAvgCommentsPerPost(),3);
+        Assert.assertEquals(0, calculateStatistics.getAvgCommentsPerPost(),3);
     }
 
     //test 3
@@ -215,8 +215,8 @@ public class ForumStatisticsTestSuite {
         Assert.assertEquals(0, calculateStatistics.getUsersQuantity(),3);
         Assert.assertEquals(15, calculateStatistics.getForumPostsQuantity(),3);
         Assert.assertEquals(15, calculateStatistics.getForumCommentsQuantity(),3);
-        Assert.assertEquals(Infinity, calculateStatistics.getAvgPostsPerUser(),3);
-        Assert.assertEquals(Infinity, calculateStatistics.getAvgCommentsPerUser(),3);
+        Assert.assertEquals(0, calculateStatistics.getAvgPostsPerUser(),3);
+        Assert.assertEquals(0, calculateStatistics.getAvgCommentsPerUser(),3);
         Assert.assertEquals(1, calculateStatistics.getAvgCommentsPerPost(),3);
     }
 

@@ -21,9 +21,15 @@ public class CalculateStatistics {
         usersQuantity = statistics.usersNames().size();
         forumPostsQuantity = statistics.postsCount();
         forumCommentsQuantity = statistics.commentsCount();
-        avgPostsPerUser = forumPostsQuantity / usersQuantity;
-        avgCommentsPerUser = forumCommentsQuantity / usersQuantity;
-        avgCommentsPerPost = forumCommentsQuantity / forumPostsQuantity;
+        if (usersQuantity !=0) {
+            avgPostsPerUser = forumPostsQuantity / usersQuantity;
+        } else avgPostsPerUser = 0;
+        if (usersQuantity != 0) {
+            avgCommentsPerUser = forumCommentsQuantity / usersQuantity;
+        } else avgCommentsPerUser = 0;
+        if (forumPostsQuantity != 0) {
+            avgCommentsPerPost = forumCommentsQuantity / forumPostsQuantity;
+        } else avgCommentsPerPost = 0;
 
         forumStatistics.put("Users quantity: ", usersQuantity);
         forumStatistics.put("Forum posts quantity: ", forumPostsQuantity);
