@@ -1,52 +1,21 @@
 package com.kodilla.stream;
 
-import com.kodilla.stream.beautifier.PoemBeatuifier;
-import com.kodilla.stream.iterate.NumbersGenerator;
-import com.kodilla.stream.lambda.*;
-import com.kodilla.stream.reference.DecorateText;
-import com.kodilla.stream.reference.FunctionalCalculator;
+import com.kodilla.stream.forumUser.Forum;
+import com.kodilla.stream.forumUser.ForumUser;
+
+import java.time.LocalDate;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class StreamMain {
     public static void main(String[] args) {
-        System.out.println("Welcome to module 7 - Stream");
+        Forum theForum = new Forum();
+        Map<Integer, ForumUser> theMapOfForumUser = theForum.getUsersList().stream()
+                .filter(user -> user.getUserSex() == 'M')
+                .filter(user -> user.getPostPublicated() > 0)
+                .filter(user -> user.getBirthDate().getYear() <= (LocalDate.now().getYear()-20))
+                .collect(Collectors.toMap(ForumUser::getIdNumber, user -> user));
 
-        SaySomething saySomething = new SaySomething();
-        saySomething.say();
-
-        Processor processor = new Processor();
-        ExecuteSaySomething executeSaySomething = new ExecuteSaySomething();
-        processor.execute(executeSaySomething);
-
-        Executor codeToExecute = () -> System.out.println("This is fourth text to be displayed!");
-        processor.execute(codeToExecute);
-
-        ExpressionExecutor expressionExecutor = new ExpressionExecutor();
-
-        expressionExecutor.executeExpression(4, 6, (a, b) -> a + b);
-        expressionExecutor.executeExpression(4, 6, (a, b) -> a - b);
-        expressionExecutor.executeExpression(4, 6, (a, b) -> a * b);
-        expressionExecutor.executeExpression(4, 6, (a, b) -> a / b);
-        expressionExecutor.executeExpression(4, 6, (a, b) -> Math.pow(a, b));
-
-        expressionExecutor.executeExpression(4, 6, FunctionalCalculator::addAtoB);
-        expressionExecutor.executeExpression(4, 6, FunctionalCalculator::subracttBfromA);
-        expressionExecutor.executeExpression(4, 6, FunctionalCalculator::multiplyAbyB);
-        expressionExecutor.executeExpression(4, 6, FunctionalCalculator::divideAbyB);
-        expressionExecutor.executeExpression(4, 6, FunctionalCalculator::powerAbyB);
-
-        PoemBeatuifier poemBeatuifier = new PoemBeatuifier();
-
-        poemBeatuifier.beautify("Change is meant to be a color modification by using lambda expression", (textToDecorate) -> textToDecorate.toUpperCase());
-        poemBeatuifier.beautify("SECOND text: 1 34 5", (textToDecorate) -> textToDecorate.toLowerCase());
-        poemBeatuifier.beautify("third text: 1 5 5", (textToDecorate) -> "AAAA " + textToDecorate + " BBBB");
-        poemBeatuifier.beautify("This is short text to be changed", (textToDecorate) -> textToDecorate.replace(" ", "  aBZBa  "));
-        poemBeatuifier.beautify("      This is short text to be changed. Change is meant to leading and trailing whitespace omitted.            ", (textToDecorate) -> textToDecorate.trim());
-        poemBeatuifier.beautify("This is short text to be changed. Change is meant to be a color modification.", (textToDecorate) -> (char)27 + "[35m" + textToDecorate);
-
-        poemBeatuifier.beautify("Change is meant to be a color modification by using function in DecorateText class", DecorateText::changeToUpperCase);
-        poemBeatuifier.beautify("Change is meant to be a color modification by using function in DecorateText class.", DecorateText::changeColorFontToMagenta);
-
-        System.out.println("Using Stream to generate even numbers from 1 to 20");
-        NumbersGenerator.generateEven(20);
+        System.out.println(theMapOfForumUser);
     }
 }
