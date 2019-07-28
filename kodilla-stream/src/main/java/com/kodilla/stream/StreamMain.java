@@ -1,6 +1,7 @@
 package com.kodilla.stream;
 
 import com.kodilla.stream.beautifier.PoemBeatuifier;
+import com.kodilla.stream.iterate.NumbersGenerator;
 import com.kodilla.stream.lambda.*;
 import com.kodilla.stream.reference.DecorateText;
 import com.kodilla.stream.reference.FunctionalCalculator;
@@ -36,12 +37,16 @@ public class StreamMain {
         PoemBeatuifier poemBeatuifier = new PoemBeatuifier();
 
         poemBeatuifier.beautify("Change is meant to be a color modification by using lambda expression", (textToDecorate) -> textToDecorate.toUpperCase());
-        poemBeatuifier.beautify("Change is meant to be a color modification by using function in DecorateText class", DecorateText::changeToUpperCase);
         poemBeatuifier.beautify("SECOND text: 1 34 5", (textToDecorate) -> textToDecorate.toLowerCase());
         poemBeatuifier.beautify("third text: 1 5 5", (textToDecorate) -> "AAAA " + textToDecorate + " BBBB");
         poemBeatuifier.beautify("This is short text to be changed", (textToDecorate) -> textToDecorate.replace(" ", "  aBZBa  "));
         poemBeatuifier.beautify("      This is short text to be changed. Change is meant to leading and trailing whitespace omitted.            ", (textToDecorate) -> textToDecorate.trim());
         poemBeatuifier.beautify("This is short text to be changed. Change is meant to be a color modification.", (textToDecorate) -> (char)27 + "[35m" + textToDecorate);
+
+        poemBeatuifier.beautify("Change is meant to be a color modification by using function in DecorateText class", DecorateText::changeToUpperCase);
         poemBeatuifier.beautify("Change is meant to be a color modification by using function in DecorateText class.", DecorateText::changeColorFontToMagenta);
+
+        System.out.println("Using Stream to generate even numbers from 1 to 20");
+        NumbersGenerator.generateEven(20);
     }
 }
