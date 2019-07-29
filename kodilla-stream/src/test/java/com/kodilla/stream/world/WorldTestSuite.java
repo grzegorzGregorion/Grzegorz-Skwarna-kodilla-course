@@ -51,6 +51,7 @@ public class WorldTestSuite {
         world.addContinent(continent4);
 
         BigDecimal peopleQuantity = world.getPeopleQuantity();
+
         //Then
         BigDecimal expectedValue = new BigDecimal("211111110903703703670");
         Assert.assertEquals(expectedValue, peopleQuantity);
