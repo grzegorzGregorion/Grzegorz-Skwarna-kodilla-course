@@ -4,20 +4,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BookLibrary {
-    LibraryDataBase libraryDataBase;
+    LibraryDatabase libraryDatabase;
 
-    public BookLibrary(LibraryDataBase libraryDataBase) {
-        this.libraryDataBase = libraryDataBase;
+    public BookLibrary(LibraryDatabase libraryDatabase) {
+        this.libraryDatabase = libraryDatabase;
     }
 
-    public List<Book> listBooksWithCondition(String titleFragment){
-        List<Book> bookList = new ArrayList<>();
+    public List<Book> listBooksWithCondition(String titleFragment) {
+        List<Book> bookList = new ArrayList<Book>();
         if (titleFragment.length() < 3) return bookList;
-        List<Book> resultList = libraryDataBase.listBooksWithCondition(titleFragment);
+        List<Book> resultList = libraryDatabase.listBooksWithCondition(titleFragment);
         if (resultList.size() > 20) return bookList;
         bookList = resultList;
         return bookList;
     }
 
-
+    public List<Book> listBooksInHandsOf(LibraryUser libraryUser) {
+        List<Book> inHandsOfList = new ArrayList<>();
+        Book book = new Book("Title", "Author", 1900);
+        inHandsOfList.add(book);
+        return inHandsOfList;
+    }
 }

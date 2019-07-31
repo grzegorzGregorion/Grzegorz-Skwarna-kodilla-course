@@ -6,8 +6,6 @@ import org.junit.Test;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.OptionalDouble;
-import java.util.stream.IntStream;
 
 import static java.time.temporal.ChronoUnit.DAYS;
 import static java.util.stream.Collectors.toList;
@@ -165,7 +163,6 @@ public class BoardTestSuite {
         long longTasks = project.getTaskLists().stream()
                 .filter(inProgressTasks::contains)
                 .flatMap(lt -> lt.getTasks().stream())
-                .map(t -> t.getCreated())
                 .count();
 
         long longTasksWorkingDays = project.getTaskLists().stream()
