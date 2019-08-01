@@ -1,21 +1,17 @@
 package com.kodilla.exception.test;
 
 public class FirstChallenge {
+
     public String divide(double a, double b) throws ArithmeticException {
-
-        double result = 0;
-
-        result = a / b;
+        double result = a / b;
 
         if (b == 0) {
             throw new ArithmeticException();
         }
-
         return ("Result of the operation is: " + result);
     }
 
     public static void main(String[] args) {
-
         FirstChallenge firstChallenge = new FirstChallenge();
 
         try {
