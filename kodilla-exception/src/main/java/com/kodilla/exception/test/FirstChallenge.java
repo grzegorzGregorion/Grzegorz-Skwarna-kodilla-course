@@ -13,7 +13,7 @@ public class FirstChallenge {
 
     public static void main(String[] args) {
         FirstChallenge firstChallenge = new FirstChallenge();
-g        try {
+        try {
             System.out.println(firstChallenge.divide(4,0));
         } catch (ArithmeticException k) {
             System.out.println("Dividing by zero is not allowed in this operation! The exception is: " + k);
