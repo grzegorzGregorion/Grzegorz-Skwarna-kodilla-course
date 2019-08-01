@@ -5,13 +5,22 @@ public class FirstChallenge {
 
         double result = 0;
 
+        result = a / b;
+
+        if (b == 0) {
+            throw new ArithmeticException();
+        }
+
+        return ("Result of the operation is: " + result);
+    }
+
+    public static void main(String[] args) {
+
+        FirstChallenge firstChallenge = new FirstChallenge();
+
         try {
 
-            result = a / b;
-
-            if (b == 0) {
-                throw new ArithmeticException();
-            }
+            System.out.println(firstChallenge.divide(4,0));
 
         } catch (ArithmeticException k) {
 
@@ -19,18 +28,8 @@ public class FirstChallenge {
 
         } finally {
 
-            System.out.println("Operation done! The program was done correctly correctly!");
+            System.out.println("Operation done! The program was done correctly!");
 
         }
-        return ("Result of the operation is: " + result);
-    }
-
-    public static void main (String[] args) {
-
-        FirstChallenge firstChallenge = new FirstChallenge();
-
-        String result = firstChallenge.divide(4, 0);
-
-        System.out.println(result);
     }
 }
