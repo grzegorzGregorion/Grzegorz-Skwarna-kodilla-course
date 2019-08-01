@@ -2,9 +2,10 @@ package com.kodilla.exception.test;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 public class FlightFinder {
-    public void findTheFlight (Flight flight) {
+    public boolean findTheFlight(Flight flight) throws RouteNotFoundException {
         Map<String, Boolean> airportsMap = new HashMap<>();
         airportsMap.put("Barcelona", true);
         airportsMap.put("Cracow", true);
@@ -14,8 +15,10 @@ public class FlightFinder {
         airportsMap.put("Tokio", true);
         airportsMap.put("Vienna", true);
 
-        for(Map.Entry<String, Boolean> entry :airportsMap.entrySet()){
-            System.out.println("Object: <" + entry.getKey() + ", " + entry.getValue() + ">");
+        if (airportsMap.containsKey(flight.getArrivalAirport())) {
+            return airportsMap.get(flight.getArrivalAirport());
+        } else {
+            throw new RouteNotFoundException();
         }
     }
 
@@ -24,8 +27,15 @@ public class FlightFinder {
         Flight flight2 = new Flight("Roma", "Vienna");
         Flight flight3 = new Flight("Oslo", "Barcelona");
         Flight flight4 = new Flight("New York", "Tokio");
-
+        Flight flight5 = new Flight("New York", "Paris");
+        Flight flight6 = new Flight("New York", "Roma");
+        Optional<String> myString = Optional.ofNullable("not null");
+        System.out.println(myString.orElse("example text"));
         FlightFinder flightFinder = new FlightFinder();
-        flightFinder.findTheFlight(flight1);
+        try {
+            System.out.println(flightFinder.findTheFlight(flight3));
+        } catch (RouteNotFoundException e) {
+            System.out.println("Route not found! Airport...");
+        }
     }
 }

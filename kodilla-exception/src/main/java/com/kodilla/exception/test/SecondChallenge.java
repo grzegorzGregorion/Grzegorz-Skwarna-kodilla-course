@@ -1,9 +1,9 @@
 package com.kodilla.exception.test;
 
 public class SecondChallenge {
-    public String probablyWillThrowException(double x, double y) throws ExceptionHandling {
+    public String probablyWillThrowException(double x, double y) throws Exception {
         if (x >= 2 || x < 1 || y == 1.5) {
-            throw new ExceptionHandling("Out of range!", "Review the code!");
+            throw new Exception();
         }
         return "Done!";
     }
