@@ -18,9 +18,6 @@ public class ProductOrderService {
         this.sellRepository = sellRepository;
     }
 
-    public ProductOrderService(boolean inform, SellService sellService, SellRepository sellRepository) {
-    }
-
     public SellDto process(final SellRequest sellRequest) {
         boolean isSold = sellService.sell(sellRequest.getUser(), sellRequest.getProductName(),
                 sellRequest.getProductPrice());
