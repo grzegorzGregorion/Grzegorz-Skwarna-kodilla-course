@@ -1,5 +1,7 @@
 package com.kodilla.good.patterns.challenges.productOrderService;
 
+import com.kodilla.good.patterns.challenges.food2door.Objects.Supplier;
+
 public class SellDto {
     public User user;
     public boolean isSold;
