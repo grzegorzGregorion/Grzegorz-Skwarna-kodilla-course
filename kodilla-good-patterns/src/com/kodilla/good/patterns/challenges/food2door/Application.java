@@ -1,7 +1,6 @@
 package com.kodilla.good.patterns.challenges.food2door;
 
 import com.kodilla.good.patterns.challenges.food2door.Objects.OrderRequest;
-import com.kodilla.good.patterns.challenges.food2door.SuppliersMakeOrderClass.HealthyFoodShopMakeOrder;
 
 public class Application {
     public static void main (String[] args) {
