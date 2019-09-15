@@ -3,9 +3,7 @@ package com.kodilla.patterns.prototype.library;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.awt.*;
 import java.time.LocalDate;
-import java.util.Set;
 import java.util.stream.IntStream;
 
 public class LibraryTestSuite {
