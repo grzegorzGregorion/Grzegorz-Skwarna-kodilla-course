@@ -3,7 +3,9 @@ package com.kodilla.patterns.prototype.library;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.awt.*;
 import java.time.LocalDate;
+import java.util.Set;
 import java.util.stream.IntStream;
 
 public class LibraryTestSuite {
@@ -34,14 +36,13 @@ public class LibraryTestSuite {
         }
 
         //When
-        Boolean result = cloneLibrary.getBooks().remove(new Book("Book title " + 1, "Book author " + 1, LocalDate.of(2001, 1, 1)));
-
-        System.out.println(result);
+        Boolean res = library.getBooks().remove(new Book("Book title " + 2, "Book author " + 2, LocalDate.of(2000 + 2, 1, 1)));
+        System.out.println(res);
         //Then
         System.out.println(library);
         System.out.println(cloneLibrary);
         System.out.println(deepClonedLibrary);
-        Assert.assertEquals(10, library.getBooks().size());
+        Assert.assertEquals(9, library.getBooks().size());
         Assert.assertEquals(9, cloneLibrary.getBooks().size());
         Assert.assertEquals(10, deepClonedLibrary.getBooks().size());
         Assert.assertEquals(library.getBooks().size(), cloneLibrary.getBooks().size());
