@@ -12,7 +12,6 @@ public class FlightFinder {
                 .filter(flight -> flight.getDepartureAirport() == fromCity)
                 .collect(Collectors.toList());
 
-        System.out.println("From " + fromCity + " List:" + fromList);
         return fromList;
 
     }
@@ -24,7 +23,6 @@ public class FlightFinder {
                 .filter(flight -> flight.getArrivalAirport() == whereCity)
                 .collect(Collectors.toList());
 
-        System.out.println("To " + whereCity + " List:" + whereList);
         return whereList;
     }
 
@@ -39,7 +37,6 @@ public class FlightFinder {
                 .filter(flight -> flight.getDepartureAirport() == viaCity)
                 .collect(Collectors.toList()));
 
-        System.out.println("Via " + viaCity + " List:" + viaList);
         return viaList;
     }
 }
