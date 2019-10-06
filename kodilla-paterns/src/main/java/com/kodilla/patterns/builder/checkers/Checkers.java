@@ -1,7 +1,5 @@
 package com.kodilla.patterns.builder.checkers;
 
-import java.util.function.BinaryOperator;
-
 public class Checkers {
     private final Board board;
     private final String playerOne;
