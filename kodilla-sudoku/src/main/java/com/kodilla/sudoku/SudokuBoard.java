@@ -1,22 +1,25 @@
 package com.kodilla.sudoku;
 
-public class Board {
-    public final static int MIN_INDEX = 0;
-    public final static int MAX_INDEX = 9;
-    SudokuElement[][] board = new SudokuElement[10][];
+import java.util.List;
 
-    public Board() {
-        for (int n = 0; n < 10; n++) {
-            board[n] = new SudokuElement[10];
+public class SudokuBoard {
+    public final static int MIN_INDEX = 0;
+    public final static int MAX_INDEX = 8;
+    SudokuRow[][] board = new SudokuRow[9][];
+
+    public SudokuBoard() {
+        for (int n = 0; n < 9; n++) {
+            board[n] = new SudokuRow[9];
         }
     }
 
-    public SudokuElement getValue(int x, int y) {
+    public SudokuRow getValue(int x, int y) {
         return board[x][y];
     }
 
-    public void setValue(SudokuElement sudokuElementValue, int x, int y) {
-        board[x][y] = sudokuElementValue;
+    public SudokuElement setValue(SudokuElement sudokuElementValue, int x, int y) {
+        board[x][y] = new SudokuRow((List<SudokuElement>) sudokuElementValue, 9);
+        return sudokuElementValue;
     }
 
     public String toString() {
@@ -27,7 +30,7 @@ public class Board {
                 if (board[n][k] == null) {
                     result += " - ";
                 } else {
-                    result += (board[n][k]).getFieldValue();
+                    result += (board[n][k].getSudokuRow().get(n));
                 }
                 result += "|";
             }

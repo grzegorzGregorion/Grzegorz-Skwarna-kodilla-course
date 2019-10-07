@@ -1,37 +1,37 @@
 package com.kodilla.sudoku;
 
 public class SudokuGame {
-    private final Board board;
+    private final SudokuBoard sudokuBoard;
 
-    SudokuGame(Board board) {
-        this.board = board;
+    SudokuGame(SudokuBoard sudokuBoard) {
+        this.sudokuBoard = sudokuBoard;
     }
 
-    public Board getBoard() {
-        return board;
+    public SudokuBoard getSudokuBoard() {
+        return sudokuBoard;
     }
 
     public static class SudokuBuilder {
-        private Board board = new Board();
+        private SudokuBoard sudokuBoard = new SudokuBoard();
 
         public SudokuBuilder SudokuElement(int fieldValue, int x, int y) {
-            if (x > Board.MAX_INDEX || x < Board.MIN_INDEX || y > Board.MAX_INDEX || y < Board.MIN_INDEX) {
-                throw new IllegalStateException("x and y should be in range " + Board.MIN_INDEX + " and " + Board.MAX_INDEX);
+            if (x > SudokuBoard.MAX_INDEX || x < SudokuBoard.MIN_INDEX || y > SudokuBoard.MAX_INDEX || y < SudokuBoard.MIN_INDEX) {
+                throw new IllegalStateException("x and y should be in range " + SudokuBoard.MIN_INDEX + " and " + SudokuBoard.MAX_INDEX);
             }
-            if (board.getValue(x, y) == null) {
-//                board.setValue(SudokuElement.setFieldValue(fieldValue), x, y);
+            if (sudokuBoard.getValue(x, y) == null) {
+//                sudokuBoard.setValue(SudokuElement.setFieldValue(fieldValue), x, y);
                 System.out.println("Error");
             } else throw new IllegalStateException("Position " + x + " , " + y + "is already occupied");
             return this;
         }
 
         public SudokuGame build() {
-            for (int x = Board.MIN_INDEX; x <= Board.MAX_INDEX; x++){
-                for (int y = Board.MIN_INDEX; y <= Board.MAX_INDEX; y++) {
-                    SudokuElement sudokuElement = board.getValue(x, y);
+            for (int x = SudokuBoard.MIN_INDEX; x <= SudokuBoard.MAX_INDEX; x++){
+                for (int y = SudokuBoard.MIN_INDEX; y <= SudokuBoard.MAX_INDEX; y++) {
+                    SudokuRow sudokuRow = sudokuBoard.getValue(x, y);
                 }
             }
-            return new SudokuGame(board);
+            return new SudokuGame(sudokuBoard);
         }
     }
 }
