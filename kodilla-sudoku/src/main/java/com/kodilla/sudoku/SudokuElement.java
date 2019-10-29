@@ -1,32 +1,28 @@
 package com.kodilla.sudoku;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.IntStream;
+
 public class SudokuElement {
-    public static int EMPTY = -1;
-    public static int fieldValue;
+    public static final int EMPTY = -1;
+    private Integer fieldValue;
+    private List<Integer> possibleValues = new ArrayList<>();
 
-    public SudokuElement(int fieldValue) {
-        if (fieldValue >= 1 || fieldValue <= 9) {
-            this.fieldValue = fieldValue;
-        } else if (fieldValue == 0) {
-            this.fieldValue = EMPTY;
-        } else {
-            throw new IllegalStateException("Sudoku field value should be in range from 1 to 9");
-        }
+    public SudokuElement() {
+        this.fieldValue = EMPTY;
+        IntStream.range(1, 10).forEach(possibleValues::add);
     }
 
-    public static int getEMPTY() {
-        return EMPTY;
-    }
-
-    public int getFieldValue() {
+    public Integer getFieldValue() {
         return fieldValue;
     }
 
-    public static void setEMPTY(int EMPTY) {
-        SudokuElement.EMPTY = EMPTY;
+    public void setFieldValue(Integer fieldValue) {
+        this.fieldValue = fieldValue;
     }
 
-    public static void setFieldValue(int fieldValue) {
-        SudokuElement.fieldValue = fieldValue;
+    public List<Integer> getPossibleValues() {
+        return possibleValues;
     }
 }

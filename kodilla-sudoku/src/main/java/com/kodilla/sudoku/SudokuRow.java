@@ -2,23 +2,16 @@ package com.kodilla.sudoku;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class SudokuRow {
-    List<SudokuElement> sudokuRow = new ArrayList<>();
-    int sudokuRowLength;
+    List<SudokuElement> cols = new ArrayList<>();
 
-    public SudokuRow(List<SudokuElement> sudokuRow, int sudokuRowLength) {
-        this.sudokuRow = sudokuRow;
-        for (int n=0; n<= sudokuRowLength; n++) {
-            sudokuRow.add(n, new SudokuElement(0));
-        }
+    public SudokuRow() {
+        IntStream.range(0,9).forEach(n -> cols.add(new SudokuElement()));
     }
 
-    public List<SudokuElement> getSudokuRow() {
-        return sudokuRow;
-    }
-
-    public int getSudokuRowLength() {
-        return sudokuRowLength;
+    public List<SudokuElement> getCols() {
+        return cols;
     }
 }

@@ -1,36 +1,39 @@
 package com.kodilla.sudoku;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
+
+import static com.kodilla.sudoku.SudokuElement.EMPTY;
 
 public class SudokuBoard {
-    public final static int MIN_INDEX = 0;
-    public final static int MAX_INDEX = 8;
-    SudokuRow[][] board = new SudokuRow[9][];
+    private List<SudokuRow> rows = new ArrayList<>();
 
     public SudokuBoard() {
-        for (int n = 0; n < 9; n++) {
-            board[n] = new SudokuRow[9];
-        }
+        IntStream.range(0, 9).forEach(n -> rows.add(new SudokuRow()));
     }
 
-    public SudokuRow getValue(int x, int y) {
-        return board[x][y];
+    public Integer getElement(int col, int row) {
+        return rows.get(row).getCols().get(col).getFieldValue();
     }
 
-    public SudokuElement setValue(SudokuElement sudokuElementValue, int x, int y) {
-        board[x][y] = new SudokuRow((List<SudokuElement>) sudokuElementValue, 9);
-        return sudokuElementValue;
+    public void setElement(int col, int row, Integer value) {
+        rows.get(row).getCols().get(col).setFieldValue(value);
+    }
+
+    public List<Integer> getPossibles(int col, int row) {
+        return rows.get(row).getCols().get(col).getPossibleValues();
     }
 
     public String toString() {
         String result = "";
-        for (int n = MIN_INDEX; n <= MAX_INDEX; n++) {
+        for (int n = 0; n <= 8; n++) {
             result += "|";
-            for (int k = MIN_INDEX; k <= MAX_INDEX; k++) {
-                if (board[n][k] == null) {
-                    result += " - ";
+            for (int k = 0; k <= 8; k++) {
+                if (getElement(n, k) == EMPTY) {
+                    result += " ";
                 } else {
-                    result += (board[n][k].getSudokuRow().get(n));
+                    result += getElement(n, k);
                 }
                 result += "|";
             }

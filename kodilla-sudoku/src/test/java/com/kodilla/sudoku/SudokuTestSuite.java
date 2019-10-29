@@ -6,11 +6,14 @@ public class SudokuTestSuite {
     @Test
     public void testBoardBuilder() {
         //Given
-        SudokuGame sudokuGame = new SudokuGame.SudokuBuilder().build();
-        System.out.println(sudokuGame.getSudokuBoard());
+        SudokuBoard sudokuBoard = new SudokuBoard();
+        System.out.println(sudokuBoard);
 
         //When
-        SudokuElement sudokuElemnent1 = sudokuGame.getSudokuBoard().setValue(new SudokuElement(2), 1, 1);
+        sudokuBoard.setElement(3, 5, 7);
+        System.out.println(sudokuBoard);
+        System.out.println(sudokuBoard.getPossibles(3, 5));
+//        SudokuElement sudokuElemnent1 = sudokuBoard.setElement().setElement(new SudokuElement(2), 1, 1);
 //        SudokuElement sudokuelemnent2 = sudokuGame.getSudokuBoard().setValue(5, 1, 1);
 //        SudokuElement sudokuElemnent3= sudokuGame.getSudokuBoard().setValue(3, 1, 1);
 //        SudokuElement sudokuElemnent4 = sudokuGame.getSudokuBoard().setValue(6, 1, 1);
