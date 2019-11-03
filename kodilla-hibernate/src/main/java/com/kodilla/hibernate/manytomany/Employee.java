@@ -5,6 +5,10 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+@NamedQuery(
+        name = "Employee.retrieveEmployessByLastName",
+        query = "FROM Employee WHERE lastName like :LASTNAME"
+)
 @Entity
 @Table(name = "EMPLOYEES")
 public class Employee {

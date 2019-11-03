@@ -2,6 +2,7 @@ package com.kodilla.hibernate.tasklist.dao;
 
 import com.kodilla.hibernate.task.Task;
 import com.kodilla.hibernate.task.TaskFinancialDetails;
+import com.kodilla.hibernate.task.dao.TaskDao;
 import com.kodilla.hibernate.tasklist.TaskList;
 import org.junit.Assert;
 import org.junit.Test;
@@ -19,6 +20,9 @@ import java.util.Optional;
 public class TaskListDaoTestSuite {
     @Autowired
     private TaskListDao taskListDao;
+    @Autowired
+    private TaskDao taskDao;
+
     private static final String LISTNAME = "ListName: test list";
     private static final String DESCRIPTION = "Tasks: learn Hibernate";
 
@@ -99,5 +103,54 @@ public class TaskListDaoTestSuite {
 
         //CleanUp
         taskListDao.deleteById(id);
+    }
+
+    @Test
+    public void testNamedQueries() {
+        //Given
+        Task task1 = new Task("Test: study Hibernate", 3);
+        Task task2 = new Task("Test: practice named Queries", 6);
+        Task task3 = new Task("Test: study native queries", 7);
+        Task task4 = new Task("Test: make some tests", 13);
+
+        TaskFinancialDetails tdf1 = new TaskFinancialDetails(new BigDecimal(5), false);
+        TaskFinancialDetails tdf2 = new TaskFinancialDetails(new BigDecimal(10), false);
+        TaskFinancialDetails tdf3 = new TaskFinancialDetails(new BigDecimal(12), false);
+        TaskFinancialDetails tdf4 = new TaskFinancialDetails(new BigDecimal(21), false);
+
+        task1.setTaskFinancialDetails(tdf1);
+        task2.setTaskFinancialDetails(tdf2);
+        task3.setTaskFinancialDetails(tdf3);
+        task4.setTaskFinancialDetails(tdf4);
+
+        TaskList  taskList = new TaskList(LISTNAME, "ToDo tasks");
+        taskList.getTasks().add(task1);
+        taskList.getTasks().add(task2);
+        taskList.getTasks().add(task3);
+        taskList.getTasks().add(task4);
+
+        task1.setTaskList(taskList);
+        task2.setTaskList(taskList);
+        task3.setTaskList(taskList);
+        task4.setTaskList(taskList);
+
+        taskListDao.save(taskList);
+        int id = taskList.getId();
+        //When
+        List<Task> longTasks = taskDao.retrieveLongTasks();
+        List<Task> shortTasks = taskDao.retrieveShortTasks();
+        List<Task> enoughTimeTasks = taskDao.retrieveTasksWithEnoughTime();
+        List<Task> durationLongerThanTasks = taskDao.retrieveTasksWithDurationLongerThan(6);
+
+        //Then
+        try {
+            Assert.assertEquals(1, longTasks.size());
+            Assert.assertEquals(3, shortTasks.size());
+            Assert.assertEquals(3, enoughTimeTasks.size());
+            Assert.assertEquals(2, durationLongerThanTasks.size());
+        } finally {
+            //CleanUp
+            taskListDao.deleteAll();
+        }
     }
 }

@@ -57,7 +57,6 @@ public class InvoiceDaoTestSuite {
         int id = invoice.getId();
         Optional<Invoice> readInvoice = invoiceDao.findById(id);
         Assert.assertTrue(readInvoice.isPresent());
-us
 
         //CleanUp
         productDao.deleteAll();

@@ -5,6 +5,10 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+@NamedQuery(
+    name = "Company.retrieveCompaniesByThreeLetters",
+    query = "FROM Company WHERE SUBSTRING(name, 1, 3) like :THREELETTERS"
+)
 @Entity
 @Table(name = "COMPANIES")
 public class Company {
