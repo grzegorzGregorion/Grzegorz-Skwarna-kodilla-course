@@ -10,7 +10,7 @@ import java.util.List;
 public class Company {
     private int id;
     private String name;
-    private List<Employee> employees =  new ArrayList<>();
+    private List<Employee> employees = new ArrayList<>();
 
     public Company() {
     }
@@ -20,8 +20,8 @@ public class Company {
     }
 
     @Id
-    @NotNull
     @GeneratedValue
+    @NotNull
     @Column(name = "COMPANY_ID", unique = true)
     public int getId() {
         return id;

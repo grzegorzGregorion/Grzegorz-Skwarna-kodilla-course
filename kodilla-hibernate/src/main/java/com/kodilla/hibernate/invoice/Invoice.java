@@ -5,6 +5,8 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name = "INVOICE")
 public class Invoice {
     private int id;
     private String number;
@@ -13,10 +15,8 @@ public class Invoice {
     public Invoice() {
     }
 
-    public Invoice(String number, List<Item> items) {
-        this.id = id;
+    public Invoice(String number) {
         this.number = number;
-        this.items = items;
     }
 
     @Id
@@ -27,14 +27,17 @@ public class Invoice {
         return id;
     }
 
-    @Column(name = "INVOICE_NUMBER")
+    @Column(name = "NUMBER")
     public String getNumber() {
         return number;
     }
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @Column(name = "INVOICE_ITEMS_LIST")
-    @JoinColumn(name = "ITEMS_ID")
+    @OneToMany(
+            targetEntity = Item.class,
+            mappedBy = "invoice",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
     public List<Item> getItems() {
         return items;
     }

@@ -1,5 +1,6 @@
 package com.kodilla.hibernate.manytomany.dao;
 
+
 import com.kodilla.hibernate.manytomany.Company;
 import com.kodilla.hibernate.manytomany.Employee;
 import org.junit.Assert;
@@ -13,30 +14,30 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class CompanyDaoTestSuite {
     @Autowired
-    CompanyDao companyDao;
+    private CompanyDao companyDao;
 
     @Test
-    public void testSaveManyToMany(){
+    public void testSaveManyToMany() {
         //Given
-        Employee johnSmith = new Employee("John", "Smith");
-        Employee stephanieClarckson = new Employee("Stephanie", "Clarckson");
-        Employee lindaKovalsky = new Employee("Linda", "Kovalsky");
+        Employee johnsmith = new Employee("John", "Smith");
+        Employee lindaclarkson = new Employee("Linda", "Clarkson");
+        Employee stephaniekovalsky = new Employee("Stephanie", "Kovalsky");
 
         Company softwareMachine = new Company("Software Machine");
         Company dataMaesters = new Company("Data Maesters");
         Company greyMatter = new Company("Grey Matter");
 
-        softwareMachine.getEmployees().add(johnSmith);
-        dataMaesters.getEmployees().add(stephanieClarckson);
-        dataMaesters.getEmployees().add(lindaKovalsky);
-        greyMatter.getEmployees().add(johnSmith);
-        greyMatter.getEmployees().add(lindaKovalsky);
+        softwareMachine.getEmployees().add(johnsmith);
+        dataMaesters.getEmployees().add(lindaclarkson);
+        dataMaesters.getEmployees().add(stephaniekovalsky);
+        greyMatter.getEmployees().add(johnsmith);
+        greyMatter.getEmployees().add(stephaniekovalsky);
 
-        johnSmith.getCompanies().add(softwareMachine);
-        johnSmith.getCompanies().add(greyMatter);
-        stephanieClarckson.getCompanies().add(dataMaesters);
-        lindaKovalsky.getCompanies().add(dataMaesters);
-        lindaKovalsky.getCompanies().add(greyMatter);
+        johnsmith.getCompanies().add(softwareMachine);
+        johnsmith.getCompanies().add(greyMatter);
+        lindaclarkson.getCompanies().add(dataMaesters);
+        stephaniekovalsky.getCompanies().add(dataMaesters);
+        stephaniekovalsky.getCompanies().add(greyMatter);
 
         //When
         companyDao.save(softwareMachine);

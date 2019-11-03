@@ -1,7 +1,5 @@
 package com.kodilla.hibernate.manytomany;
 
-import com.kodilla.hibernate.manytomany.Company;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
@@ -31,19 +29,17 @@ public class Employee {
         return id;
     }
 
-    @NotNull
     @Column(name = "FIRSTNAME")
     public String getFirstName() {
         return firstName;
     }
 
-    @NotNull
     @Column(name = "LASTNAME")
     public String getLastName() {
         return lastName;
     }
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL    )
     @JoinTable(
             name = "JOIN_COMPANY_EMPLOYEE",
             joinColumns = {@JoinColumn(name = "EMPLOYEE_ID", referencedColumnName = "EMPLOYEE_ID")},
@@ -52,7 +48,6 @@ public class Employee {
     public List<Company> getCompanies() {
         return companies;
     }
-
 
     public void setId(int id) {
         this.id = id;

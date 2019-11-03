@@ -8,16 +8,15 @@ import java.math.BigDecimal;
 @Table(name = "ITEMS")
 public class Item {
     private int id;
-    Product product;
-    BigDecimal price;
-    int quantity;
+    private Product product;
+    private BigDecimal price;
+    private int quantity;
+    private Invoice invoice;
 
     public Item() {
     }
 
-    public Item(Product product, BigDecimal price, int quantity) {
-        this.id = id;
-        this.product = product;
+    public Item(BigDecimal price, int quantity) {
         this.price = price;
         this.quantity = quantity;
     }
@@ -30,21 +29,26 @@ public class Item {
         return id;
     }
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @Column(name = "PRODUCT_NAME")
-    @JoinColumn(name = "PRODUCT_ID")
+    @ManyToOne
+    @JoinColumn(name = "PRODUCTLIST_ID")
     public Product getProduct() {
         return product;
     }
 
-    @Column(name = "PRODUCT_PRICE")
+    @Column(name = "PRICE")
     public BigDecimal getPrice() {
         return price;
     }
 
-    @Column(name = "PRODUCT_QUANTITY")
+    @Column(name = "QUANTITY")
     public int getQuantity() {
         return quantity;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "INVOICE_ID")
+    public Invoice getInvoice() {
+        return invoice;
     }
 
     public void setId(int id) {
@@ -61,5 +65,9 @@ public class Item {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public void setInvoice(Invoice invoice) {
+        this.invoice = invoice;
     }
 }
