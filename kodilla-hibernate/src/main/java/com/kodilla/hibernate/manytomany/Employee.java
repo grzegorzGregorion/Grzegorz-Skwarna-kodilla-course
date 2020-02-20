@@ -4,11 +4,18 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
+@NamedQueries({
+        @NamedQuery(
+                name = "Employee.retrieveEmployessByLastName",
+                query = "FROM Employee WHERE lastName like :LASTNAME"
+        ),
+        @NamedQuery(
+                name = "Employee.findByAnyNumberOfSigns",
+                query = "FROM Employee WHERE lastName like :ARG"
+        )
+})
 
-@NamedQuery(
-        name = "Employee.retrieveEmployessByLastName",
-        query = "FROM Employee WHERE lastName like :LASTNAME"
-)
+
 @Entity
 @Table(name = "EMPLOYEES")
 public class Employee {
