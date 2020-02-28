@@ -13,9 +13,11 @@ import org.springframework.stereotype.Component;
 public class FacadeWatcher {
     private static final Logger LOGGER = LoggerFactory.getLogger(FacadeWatcher.class);
 
-    @Before("execution(* com.kodilla.patterns2.facade.api.OrderFacade.processOrder(..)) && target(targetObj)")
-    public void logEventBefore(Object targetObj) {
-        LOGGER.info("The Facade processOrder is going to be processed\nTarget object: " + targetObj.getClass().getName());
+    @Before("execution(* com.kodilla.patterns2.facade.api.OrderFacade.processOrder(..)) && target(targetObj) && args(orderDtoObj, userIdObj)")
+    public void logEventBefore(Object targetObj, OrderDto orderDtoObj, Long userIdObj) {
+        LOGGER.info("The Facade processOrder is going to be processed\nTarget object: " + targetObj.getClass().getName()
+                + "\nOrderDtoObj: " + orderDtoObj
+                + "\nUserIdObj: " + userIdObj);
     }
 
     @After("execution(* com.kodilla.patterns2.facade.api.OrderFacade.processOrder(..)) && target(targetObj)")
